@@ -3,8 +3,6 @@
 $(function () {
 
 	var scores = [ 90, 80, 70, 75, 88, 91, 75, 55, 59, 69, 60, 50, 75, 88, 91, 75, 55, 59, 69, 60, 50, 55, 59, 69, 60, 50, 40 ];
-	var log_scores = [];
-	var z_scores = [];
 
 	var mean = Graph.mean ( scores );
 	var median = Graph.median ( scores );
@@ -14,30 +12,9 @@ $(function () {
 	var standard_deviation = Graph.standardDeviation(variance);
 	var kurtosis = Graph.kurtosis ( scores, mean, standard_deviation );
 	var sek = Graph.sek ( scores );
+	var z_scores = Graph.zScore ( scores, mean, standard_deviation );
 
-	// Z-Score:
-	// ( x - μ ) / standard_deviation
-	z_scores = z_score ( scores, mean, standard_deviation );
-
-
-	log_scores = log_score( scores );
-	var log_sort_scores = log_scores.slice(0).sort();
-	var log_mean = sum ( log_scores ) / log_scores.length;
-	var log_mean_squares = mean_power ( log_scores, log_mean, 2 );
-	var log_variance = sum(log_mean_squares) / log_mean_squares.length;
-	var log_standard_deviation = Math.sqrt ( log_variance );
-	var log_mean_fourths = mean_power(log_scores, log_mean, 4);
-	var log_kurtosis = sum(log_mean_fourths) / (log_mean_fourths.length * Math.pow( log_standard_deviation, 4 ) );
-	var log_mid, log_median;
-	if ( log_sort_scores.length % 2 === 0 ) {
-		log_mid = log_sort_scores.length / 2;
-		log_median = log_sort_scores[log_mid];
-	} else {
-		log_mid = Math.floor(log_sort_scores.length / 2);
-		log_median = (log_sort_scores[log_mid] + log_sort_scores[log_mid+1] ) / 2
-	}
-	var log_skew = 3 * ( log_mean - log_median );
-	var log_z_scores = z_score ( log_scores, log_mean, log_standard_deviation );
+	var log_scores = Graph.log( scores );
 
 	console.log ('scores:', scores);
 	console.log ('mean:', mean);
@@ -48,29 +25,6 @@ $(function () {
 	console.log ('kurtosis:', kurtosis);
 	console.log ('sek:', sek);
 	console.log ('z-scores:', z_scores);
-
-	console.log ('----------------------------');
-
-	console.log ('log-scores:', log_scores);
-	console.log ('log-mean:', log_mean);
-	console.log ('log-median:', log_median);
-	console.log ('log-variance:', log_variance);
-	console.log ('log-skew', log_skew);
-	console.log ('log-standard-deviation:', log_standard_deviation);
-	console.log ('log-kurtosis:', log_kurtosis);
-	console.log ('log-z-scores:', log_z_scores);
-
-	console.log ('----------------------------');
-
-	var grades_perc = get_grade_by_perc ( scores );
-	var grades_raw = get_letter_grades ( z_scores );
-	var grades_log = get_letter_grades ( log_z_scores );
-
-	console.log ('scores:', scores);
-	console.log ( 'Per Grades:', grades_perc );
-	console.log ( 'Raw Grades:', grades_raw );
-	console.log ( 'Log Grades:', grades_log );
-
 
 	//$('#scores').highcharts({
 		//chart: {

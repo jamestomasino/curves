@@ -83,7 +83,7 @@ var Graph = {
 		}
 
 		var meanFourths = Graph.meanPower (arr, mean, 4);
-		return Graph.sum(meanFourths) / (arr.length * Math.pow( standard_deviation, 4 ) );
+		return Graph.sum(meanFourths) / (arr.length * Math.pow( standardDeviation, 4 ) );
 	},
 
 	// SEK (Standard error of kurtosis):
@@ -93,7 +93,8 @@ var Graph = {
 		return 2 * Math.sqrt ( ((n*n)-1) / ( (n-3) * (n + 5) ) );
 	},
 
-	logScore: function ( arr ) {
+	// Take log(e) of each item in data, return new array
+	log: function ( arr ) {
 		var ls = [];
 		var i = arr.length; while (i--) {
 			ls.unshift ( Math.log( arr[i] ) );
@@ -101,10 +102,19 @@ var Graph = {
 		return ls;
 	},
 
-	zScore: function ( arr, mean, standard_deviation ) {
+	// Z-Score:
+	// ( x - μ ) / standard_deviation
+	zScore: function ( arr, mean, standardDeviation ) {
+		if (typeof mean === 'undefined') {
+			mean = Graph.mean(arr);
+		}
+		if (typeof standardDeviation === 'undefined') {
+			standardDeviation = Graph.standardDeviation ( arr );
+		}
+
 		var zs = [];
 		var i = arr.length; while (i--) {
-			zs.unshift ( (arr[i] - mean) / standard_deviation );
+			zs.unshift ( (arr[i] - mean) / standardDeviation );
 		}
 		return zs;
 	}
