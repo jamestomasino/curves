@@ -1,8 +1,9 @@
 test( "Graph.sum", Graph_sum );
 test( "Graph.mean", Graph_mean );
 test( "Graph.median", Graph_median );
-test( "Graph.skew", Graph_skew);
-test( "Graph.variance", Graph_variance);
+test( "Graph.skew", Graph_skew );
+test( "Graph.variance", Graph_variance );
+test( "Graph.standardDeviation", Graph_standardDeviation );
 test( "Graph.meanPower", Graph_meanPower );
 
 function Graph_sum () {
@@ -45,7 +46,15 @@ function Graph_skew () {
 function Graph_variance () {
 	var arr1 = [ 90, 80, 70, 75, 88, 91, 75, 55, 59, 69, 60, 50, 75, 88, 91, 75, 55, 59, 69, 60, 50, 55, 59, 69, 60, 50, 40 ];
 	var mean = Graph.mean ( arr1 );
+	equal ( Graph.variance( arr1 ), 199.02331961591221 );
 	equal ( Graph.variance( arr1, mean), 199.02331961591221 );
+}
+
+function Graph_standardDeviation () {
+	var arr1 = [ 90, 80, 70, 75, 88, 91, 75, 55, 59, 69, 60, 50, 75, 88, 91, 75, 55, 59, 69, 60, 50, 55, 59, 69, 60, 50, 40 ];
+	var variance = Graph.variance ( arr1 );
+	equal ( Graph.standardDeviation (arr1), 14.107562497324341 );
+	equal ( Graph.standardDeviation (variance), 14.107562497324341 );
 }
 
 function Graph_meanPower () {

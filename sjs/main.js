@@ -3,7 +3,6 @@
 $(function () {
 
 	var scores = [ 90, 80, 70, 75, 88, 91, 75, 55, 59, 69, 60, 50, 75, 88, 91, 75, 55, 59, 69, 60, 50, 55, 59, 69, 60, 50, 40 ];
-	var mean_fourths = [];
 	var log_scores = [];
 	var z_scores = [];
 
@@ -12,18 +11,11 @@ $(function () {
 	var skew = Graph.skew ( mean, median );
 	var mean_squares = Graph.meanPower( scores, mean, 2 );
 	var variance = Graph.variance ( scores, mean );
-
-	// Variance:
-	// For each score: (x - μ)^2
-	// Calculate μ of result set
-
-	// Standard Deviation:
-	// Square Root of Variance
-	standard_deviation = Math.sqrt(variance);
+	var standard_deviation = Graph.standardDeviation(variance);
 
 	// Kurtosis:
 	// (x - μ)^4 / standard_deviation^4
-	mean_fourths = mean_power(scores, mean, 4);
+	var mean_fourths = mean_power(scores, mean, 4);
 	var kurtosis = sum(mean_fourths) / (mean_fourths.length * Math.pow( standard_deviation, 4 ) );
 
 	// SEK (Standard error of kurtosis):

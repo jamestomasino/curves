@@ -49,8 +49,27 @@ var Graph = {
 		return ms;
 	},
 
+	// Variance:
+	// For each score: (x - μ)^2
+	// Calculate μ of result set
 	variance: function ( arr, mean ) {
+		if (typeof mean === 'undefined') {
+			mean = Graph.mean(arr);
+		}
 		return Graph.sum( Graph.meanPower( arr, mean, 2 ) ) / arr.length;
+	},
+
+	// Standard Deviation:
+	// Square Root of Variance
+	// Arguments: Variance (Number) -or- Data set (Array)
+	standardDeviation: function ( v ) {
+		if (typeof v === 'number') {
+			return Math.sqrt ( v );
+		} else if( Object.prototype.toString.call( v ) === '[object Array]' ) {
+			return Math.sqrt ( Graph.variance ( v ) );
+		} else {
+			return;
+		}
 	},
 
 	logScore: function ( arr ) {
