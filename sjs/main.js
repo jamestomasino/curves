@@ -1,3 +1,5 @@
+//= require graph
+
 $(function () {
 
 	var scores = [ 90, 80, 70, 75, 88, 91, 75, 55, 59, 69, 60, 50, 75, 88, 91, 75, 55, 59, 69, 60, 50, 55, 59, 69, 60, 50, 40 ];
@@ -77,28 +79,28 @@ $(function () {
 	var log_skew = 3 * ( log_mean - log_median );
 	var log_z_scores = z_score ( log_scores, log_mean, log_standard_deviation );
 
-	//console.log ('scores:', scores);
-	//console.log ('mean:', mean);
-	//console.log ('median:', median);
-	//console.log ('variance:', variance);
-	//console.log ('standard-deviation:', standard_deviation );
-	//console.log ('skew', skew);
-	//console.log ('kurtosis:', kurtosis);
-	//console.log ('sek:', sek);
-	//console.log ('z-scores:', z_scores);
+	console.log ('scores:', scores);
+	console.log ('mean:', mean);
+	console.log ('median:', median);
+	console.log ('variance:', variance);
+	console.log ('standard-deviation:', standard_deviation );
+	console.log ('skew', skew);
+	console.log ('kurtosis:', kurtosis);
+	console.log ('sek:', sek);
+	console.log ('z-scores:', z_scores);
 
-	//console.log ('----------------------------');
+	console.log ('----------------------------');
 
-	//console.log ('log-scores:', log_scores);
-	//console.log ('log-mean:', log_mean);
-	//console.log ('log-median:', log_median);
-	//console.log ('log-variance:', log_variance);
-	//console.log ('log-skew', log_skew);
-	//console.log ('log-standard-deviation:', log_standard_deviation);
-	//console.log ('log-kurtosis:', log_kurtosis);
-	//console.log ('log-z-scores:', log_z_scores);
+	console.log ('log-scores:', log_scores);
+	console.log ('log-mean:', log_mean);
+	console.log ('log-median:', log_median);
+	console.log ('log-variance:', log_variance);
+	console.log ('log-skew', log_skew);
+	console.log ('log-standard-deviation:', log_standard_deviation);
+	console.log ('log-kurtosis:', log_kurtosis);
+	console.log ('log-z-scores:', log_z_scores);
 
-	//console.log ('----------------------------');
+	console.log ('----------------------------');
 
 	var grades_perc = get_grade_by_perc ( scores );
 	var grades_raw = get_letter_grades ( z_scores );
@@ -110,239 +112,89 @@ $(function () {
 	console.log ( 'Log Grades:', grades_log );
 
 
-	$('#scores').highcharts({
-		chart: {
-			zoomType: 'xy'
-		},
-		title: {
-			text: 'Grading Curve'
-		},
-		subtitle: {
-		},
-		xAxis: [{
-			labels: { enabled: false }
-		}],
-		yAxis: [{ // Primary yAxis
-			max: 2,
-			min: -3,
-			labels: {
-				format: '{value}',
-				style: {
-					color: '#89A54E'
-				}
-			},
-			title: {
-				text: 'Z Score',
-				style: {
-					color: '#89A54E'
-				}
-			}
-		}, { // Secondary yAxis
-			max: 100,
-			min: 0,
-			title: {
-				text: 'Percentage',
-				style: {
-					color: '#4572A7'
-				}
-			},
-			labels: {
-				format: '{value}%',
-				style: {
-					color: '#4572A7'
-				}
-			},
-			opposite: true
-		}],
-		tooltip: {
-			shared: true
-		},
-		legend: {
-			layout: 'vertical',
-			align: 'left',
-			x: 50,
-			verticalAlign: 'top',
-			y: 320,
-			floating: true,
-			backgroundColor: '#FFFFFF'
-		},
-		series: [{
-			name: 'Score',
-			color: '#4572A7',
-			type: 'scatter',
-			yAxis: 1,
-			data: scores,
-			tooltip: {
-				valueSuffix: '%'
-			}
-
-		}, {
-			name: 'Z Score',
-			color: '#89A54E',
-			type: 'spline',
-			data: z_scores,
-			tooltip: {
-				valueSuffix: ''
-			}
-		}, {
-			name: 'Transformed Z Score',
-			color: '#E10000',
-			type: 'spline',
-			data: log_z_scores,
-			tooltip: {
-				valueSuffix: ''
-			}
-
-		}]
-	});
-});
-
 	//$('#scores').highcharts({
 		//chart: {
 			//zoomType: 'xy'
 		//},
 		//title: {
-			//text: 'Grades',
+			//text: 'Grading Curve'
 		//},
 		//subtitle: {
 		//},
-		//xAxis: {
-		//},
+		//xAxis: [{
+			//labels: { enabled: false }
+		//}],
 		//yAxis: [{ // Primary yAxis
+			//max: 2,
+			//min: -3,
 			//labels: {
-				//format: '{value}%',
+				//format: '{value}',
 				//style: {
 					//color: '#89A54E'
 				//}
 			//},
 			//title: {
-				//text: 'Score',
+				//text: 'Z Score',
 				//style: {
 					//color: '#89A54E'
 				//}
 			//}
 		//}, { // Secondary yAxis
+			//max: 100,
+			//min: 0,
 			//title: {
-				//text: 'Z-Score',
+				//text: 'Percentage',
 				//style: {
 					//color: '#4572A7'
 				//}
 			//},
 			//labels: {
-				//format: '{value}',
+				//format: '{value}%',
 				//style: {
 					//color: '#4572A7'
 				//}
 			//},
 			//opposite: true
 		//}],
-		//yAxis: {
-			//title: {
-				//text: 'Score'
-			//},
-			//plotLines: [{
-				//value: 0,
-				//width: 1,
-				//color: '#808080'
-			//}]
-		//},
 		//tooltip: {
-			//valueSuffix: '%',
 			//shared: true
+		//},
+		//legend: {
+			//layout: 'vertical',
+			//align: 'left',
+			//x: 50,
+			//verticalAlign: 'top',
+			//y: 320,
+			//floating: true,
+			//backgroundColor: '#FFFFFF'
 		//},
 		//series: [{
 			//name: 'Score',
 			//color: '#4572A7',
-			//type: 'column',
+			//type: 'scatter',
 			//yAxis: 1,
 			//data: scores,
 			//tooltip: {
 				//valueSuffix: '%'
 			//}
+
 		//}, {
 			//name: 'Z Score',
 			//color: '#89A54E',
 			//type: 'spline',
-			//data: scores,
+			//data: z_scores,
 			//tooltip: {
 				//valueSuffix: ''
 			//}
+		//}, {
+			//name: 'Transformed Z Score',
+			//color: '#E10000',
+			//type: 'spline',
+			//data: log_z_scores,
+			//tooltip: {
+				//valueSuffix: ''
+			//}
+
 		//}]
 	//});
-
-function sum ( arr ) {
-	var s = 0;
-	var i = arr.length; while (i--) {
-		s += arr[i];
-	}
-	return s;
-}
-
-function mean_power ( arr, mean, pow ) {
-	var ms = [];
-	var i = arr.length; while (i--) {
-		ms.unshift (Math.pow(arr[i] - mean, pow) );
-	}
-	return ms;
-}
-
-function log_score ( arr ) {
-	var ls = [];
-	var i = arr.length; while (i--) {
-		ls.unshift ( Math.log( arr[i] ) );
-	}
-	return ls;
-}
-
-function z_score ( arr, mean, standard_deviation ) {
-	var zs = [];
-	var i = arr.length; while (i--) {
-		zs.unshift ( (arr[i] - mean) / standard_deviation );
-	}
-	return zs;
-}
-
-function get_grade_by_perc (arr) {
-	var grades = [];
-	var i = arr.length; while (i--) {
-		var grade = "F";
-		if ( arr[i] >= 97 ) {
-			grade = "A+";
-		} else if ( arr[i] >= 90 ) {
-			grade = "A";
-		} else if ( arr[i] >= 80 ) {
-			grade = "B";
-		} else if ( arr[i] >= 70 ) {
-			grade = "C";
-		} else if ( arr[i] > 60) {
-			grade = "D";
-		} else {
-			grade = "F";
-		}
-		grades.unshift( grade );
-	}
-	return grades;
-}
-
-function get_letter_grades ( arr ) {
-	var grades = [];
-	var i = arr.length; while (i--) {
-		var grade = "F";
-		if ( arr[i] >= 1.7 ) {
-			grade = "A+";
-		} else if ( arr[i] >= 1 ) {
-			grade = "A";
-		} else if ( arr[i] >= 0 ) {
-			grade = "B";
-		} else if ( arr[i] >= -1 ) {
-			grade = "C";
-		} else if ( arr[i] > -2 ) {
-			grade = "D";
-		} else {
-			grade = "F";
-		}
-		grades.unshift( grade );
-	}
-	return grades;
-}
-
+});
