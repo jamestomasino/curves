@@ -12,16 +12,8 @@ $(function () {
 	var mean_squares = Graph.meanPower( scores, mean, 2 );
 	var variance = Graph.variance ( scores, mean );
 	var standard_deviation = Graph.standardDeviation(variance);
-
-	// Kurtosis:
-	// (x - μ)^4 / standard_deviation^4
-	var mean_fourths = mean_power(scores, mean, 4);
-	var kurtosis = sum(mean_fourths) / (mean_fourths.length * Math.pow( standard_deviation, 4 ) );
-
-	// SEK (Standard error of kurtosis):
-	// sek = 2(SES) Math.sqrt( (n^2-1) / (n-3)(n+5) )
-	var n = scores.length;
-	sek = 2 * Math.sqrt ( ((n*n)-1) / ( (n-3) * (n + 5) ) );
+	var kurtosis = Graph.kurtosis ( scores, mean, standard_deviation );
+	var sek = Graph.sek ( scores );
 
 	// Z-Score:
 	// ( x - μ ) / standard_deviation

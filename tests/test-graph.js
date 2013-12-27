@@ -4,6 +4,8 @@ test( "Graph.median", Graph_median );
 test( "Graph.skew", Graph_skew );
 test( "Graph.variance", Graph_variance );
 test( "Graph.standardDeviation", Graph_standardDeviation );
+test( "Graph.kurtosis", Graph_kurtosis );
+test( "Graph.sek", Graph_sek );
 test( "Graph.meanPower", Graph_meanPower );
 
 function Graph_sum () {
@@ -55,6 +57,14 @@ function Graph_standardDeviation () {
 	var variance = Graph.variance ( arr1 );
 	equal ( Graph.standardDeviation (arr1), 14.107562497324341 );
 	equal ( Graph.standardDeviation (variance), 14.107562497324341 );
+}
+
+function Graph_kurtosis () {
+	expect(0);
+}
+
+function Graph_sek () {
+	expect(0);
 }
 
 function Graph_meanPower () {

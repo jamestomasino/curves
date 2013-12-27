@@ -72,6 +72,27 @@ var Graph = {
 		}
 	},
 
+	// Kurtosis:
+	// (x - μ)^4 / standard_deviation^4
+	kurtosis: function ( arr, mean, standardDeviation ) {
+		if (typeof mean === 'undefined') {
+			mean = Graph.mean(arr);
+		}
+		if (typeof standardDeviation === 'undefined') {
+			standardDeviation = Graph.standardDeviation ( arr );
+		}
+
+		var meanFourths = Graph.meanPower (arr, mean, 4);
+		return Graph.sum(meanFourths) / (arr.length * Math.pow( standard_deviation, 4 ) );
+	},
+
+	// SEK (Standard error of kurtosis):
+	// sek = 2(SES) Math.sqrt( (n^2-1) / (n-3)(n+5) )
+	sek: function ( arr ) {
+		var n = arr.length;
+		return 2 * Math.sqrt ( ((n*n)-1) / ( (n-3) * (n + 5) ) );
+	},
+
 	logScore: function ( arr ) {
 		var ls = [];
 		var i = arr.length; while (i--) {
