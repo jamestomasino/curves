@@ -32,12 +32,25 @@ var Graph = {
 		return median;
 	},
 
+	skew: function ( mean, median ) {
+		return 3 * ( mean - median );
+	},
+
 	meanPower: function ( arr, mean, pow ) {
+		if (typeof pow === 'undefined') pow = 2;
+		if (typeof mean === 'undefined') {
+			mean = Graph.mean(arr);
+		}
+
 		var ms = [];
 		var i = arr.length; while (i--) {
 			ms.unshift (Math.pow(arr[i] - mean, pow) );
 		}
 		return ms;
+	},
+
+	variance: function ( arr, mean ) {
+		return Graph.sum( Graph.meanPower( arr, mean, 2 ) ) / arr.length;
 	},
 
 	logScore: function ( arr ) {

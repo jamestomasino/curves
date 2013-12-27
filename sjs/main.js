@@ -3,47 +3,23 @@
 $(function () {
 
 	var scores = [ 90, 80, 70, 75, 88, 91, 75, 55, 59, 69, 60, 50, 75, 88, 91, 75, 55, 59, 69, 60, 50, 55, 59, 69, 60, 50, 40 ];
-	var sort_scores = [];
-	var mean_squares = [];
 	var mean_fourths = [];
 	var log_scores = [];
 	var z_scores = [];
 
-	// Median:
-	// Middle value when sorted
-	var median = 0;
-	var mid = 0;
-	sort_scores = scores.slice(0).sort(compareNumbers);
-
-	function compareNumbers(a, b) {
-		return a - b;
-	}
-
-	if ( sort_scores.length % 2 === 0 ) {
-		mid = sort_scores.length / 2;
-		median = sort_scores[mid];
-	} else {
-		mid = Math.floor(sort_scores.length / 2);
-		median = (sort_scores[mid] + sort_scores[mid+1] ) / 2
-	}
-
-	// Mean:
-	// Sum all scores and divide by n
-	var mean = sum(scores) / scores.length;
+	var mean = Graph.mean ( scores );
+	var median = Graph.median ( scores );
+	var skew = Graph.skew ( mean, median );
+	var mean_squares = Graph.meanPower( scores, mean, 2 );
+	var variance = Graph.variance ( scores, mean );
 
 	// Variance:
 	// For each score: (x - μ)^2
 	// Calculate μ of result set
-	mean_squares = mean_power(scores, mean, 2);
-	variance = sum(mean_squares) / mean_squares.length;
 
 	// Standard Deviation:
 	// Square Root of Variance
 	standard_deviation = Math.sqrt(variance);
-
-	// Skew:
-	// 3(Mean - Median)
-	var skew = 3 * ( mean - median );
 
 	// Kurtosis:
 	// (x - μ)^4 / standard_deviation^4
