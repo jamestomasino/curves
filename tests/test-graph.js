@@ -1,3 +1,4 @@
+module ("Graph", { setup: Graph_setup, teardown: Graph_teardown });
 test( "Graph.sum", Graph_sum );
 test( "Graph.mean", Graph_mean );
 test( "Graph.median", Graph_median );
@@ -9,6 +10,12 @@ test( "Graph.sek", Graph_sek );
 test( "Graph.meanPower", Graph_meanPower );
 test( "Graph.log", Graph_log );
 test( "Graph.zScore", Graph_zScore );
+
+// Setup something before all tests run
+function Graph_setup () { }
+
+// Teardown things after each test
+function Graph_teardown () { }
 
 function Graph_sum () {
 	var arr1 = [0,1,2,3,4,5,6,7,8,9,10];
@@ -24,7 +31,7 @@ function Graph_sum () {
 function Graph_mean () {
 	var arr1 = [ 90, 80, 70, 75, 88, 91, 75, 55, 59, 69, 60, 50, 75, 88, 91, 75, 55, 59, 69, 60, 50, 55, 59, 69, 60, 50, 40 ];
 	var arr2 = [ 0, 0, 0 ];
-	var arr3 = [ ];
+	var arr3 = [];
 	equal ( Graph.mean(arr1), 67.29629629629629 );
 	equal ( Graph.mean(arr2), 0 );
 	equal ( Graph.mean(arr3), undefined );
