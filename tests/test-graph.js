@@ -39,8 +39,8 @@ function Graph_mean () {
 
 function Graph_median () {
 	var arr1 = [ 90, 80, 70, 75, 88, 91, 75, 55, 59, 69, 60, 50, 75, 88, 91, 75, 55, 59, 69, 60, 50, 55, 59, 69, 60, 50, 40 ];
-	var arr2 = [ 0,0,0,0,0,0,0,0 ]
-	var arr3 = []
+	var arr2 = [ 0,0,0,0,0,0,0,0 ];
+	var arr3 = [];
 	equal ( Graph.median(arr1), 69 );
 	equal ( Graph.median(arr2), 0 );
 	equal ( Graph.median(arr3), undefined );

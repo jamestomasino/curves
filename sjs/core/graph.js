@@ -22,7 +22,7 @@ var Graph = {
 			median = sort[mid];
 		} else {
 			mid = Math.floor(sort.length / 2);
-			median = (sort[mid] + sort[mid+1] ) / 2
+			median = (sort[mid] + sort[mid+1] ) / 2;
 		}
 
 		function compareNumbers(a, b) {
@@ -118,4 +118,4 @@ var Graph = {
 		}
 		return zs;
 	}
-}
+};
