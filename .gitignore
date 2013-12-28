@@ -1,0 +1,5 @@
+.sass-cache/*
+css/*
+js/*
+Gemfile.lock
+node_modules/*
