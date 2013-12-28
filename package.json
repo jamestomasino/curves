@@ -14,5 +14,8 @@
     "grunt-barkeep": "~0.4.3",
     "grunt-contrib-compass": "~0.7.0",
     "grunt-contrib-watch": "~0.5.3"
+  },
+  "scripts": {
+	  "test": "grunt travis --verbose"
   }
 }

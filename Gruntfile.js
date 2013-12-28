@@ -90,5 +90,6 @@ module.exports = function(grunt) {
 	// Default task(s).
 	grunt.registerTask('test', ['jshint', 'qunit']);
 	grunt.registerTask('default', ['jshint', 'qunit', 'compass:dist', 'snockets']);
+	grunt.registerTask('travis', ['jshint','qunit']);
 
 };
