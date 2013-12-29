@@ -85,10 +85,11 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-barkeep');
 	grunt.loadNpmTasks('grunt-contrib-compass');
 	grunt.loadNpmTasks('grunt-contrib-watch');
+	grunt.loadNpmTasks('grunt-beep');
 
 	// Default task(s).
-	grunt.registerTask('test', ['jshint', 'qunit']);
-	grunt.registerTask('default', ['jshint', 'qunit', 'compass:dist', 'snockets']);
+	grunt.registerTask('test', [ 'jshint', 'qunit', 'beep:error' ]);
+	grunt.registerTask('default', ['jshint', 'qunit', 'compass:dist', 'snockets', 'beep:twobits']);
 	grunt.registerTask('travis', ['jshint','qunit']);
 
 };
