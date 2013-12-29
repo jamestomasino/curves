@@ -6,6 +6,11 @@ module.exports = function(grunt) {
 		qunit: {
 			files: ['tests/*.html'],
 		},
+		jsonlint: {
+			scripts: {
+				src: [ 'sjs/**/*.json', 'data/**/*.json' ]
+			}
+		},
 		jshint: {
 			files: ['Gruntfile.js', 'sjs/core/**/*.js', 'tests/*.js'],
 			options: {
@@ -85,11 +90,12 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-barkeep');
 	grunt.loadNpmTasks('grunt-contrib-compass');
 	grunt.loadNpmTasks('grunt-contrib-watch');
+	grunt.loadNpmTasks('grunt-jsonlint');
 	grunt.loadNpmTasks('grunt-beep');
 
 	// Default task(s).
 	grunt.registerTask('test', [ 'jshint', 'qunit', 'beep:error' ]);
-	grunt.registerTask('default', ['jshint', 'qunit', 'compass:dist', 'snockets', 'beep:twobits']);
+	grunt.registerTask('default', ['jshint', 'jsonlint', 'qunit', 'compass:dist', 'snockets', 'beep:error']);
 	grunt.registerTask('travis', ['jshint','qunit']);
 
 };
